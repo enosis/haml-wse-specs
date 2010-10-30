@@ -6,7 +6,7 @@
 This is a draft document, at v0.5002, 30 October 2010.
 See the bottom for plans, contributions, and TODO.
 
-To dive right in: [Haml Whitespace Semantics Extension Implementation Notes](http://github.com/enosis/haml-wse-specs/blob/doc/Haml_WhitespaceSemanticsExtension_ImplementationNotes.md)
+To dive right in: [Haml Whitespace Semantics Extension Implementation Notes](http://github.com/enosis/haml-wse-specs/blob/master/doc/Haml_WhitespaceSemanticsExtension_ImplementationNotes.md)
 
 Proposer: Nick Ragouzis, Enosis Group
 
@@ -208,19 +208,19 @@ This is a draft proposal, in the process of being corrected and refined.
 
 *   Haml Whitespace Semantics Extension (WSE) Implementation Notes
     (in Markdown and Pod)
-*   An RSpec file, [00ImplementationNotes_spec.rb](http://github.com/enosis/haml-wse-specs/blob/ruby/spec/00ImplementationNotes_spec.rb), of all of the code
+*   An RSpec file, [00ImplementationNotes_spec.rb](http://github.com/enosis/haml-wse-specs/blob/master/ruby/spec/00ImplementationNotes_spec.rb), of all of the code
     snippets from the Implementation Notes document. Deprecated;
     will be removed after draft v0.5.
 *   A collection of RSpec files, one for each code snippet from the
     Implementation Notes document (initially: 61 files).
 *   A collection of RSpec files by major extension topic
     (initially: 14 files).
-*   A [Rakefile](http://github.com/enosis/haml-wse-specs/blob/ruby/Rakefile)
+*   A [Rakefile](http://github.com/enosis/haml-wse-specs/blob/master/ruby/Rakefile)
     with suites to allow you to run the entire suite of code in the
     Implementation Notes document, and by each major topic section.
 *   A parallel collection of Test::More files, for running against
     vti's Text::Haml.
-*   A parallel [Makefile](http://github.com/enosis/haml-wse-specs/blob/perl/t/Makefile).
+*   A parallel [Makefile](http://github.com/enosis/haml-wse-specs/blob/master/perl/t/Makefile).
 
 Why such a big load of stuff? Well, one of us (Ragouzis) started
 just implementing the various extensions, piecewise. But then ...
