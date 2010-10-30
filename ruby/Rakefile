@@ -1,0 +1,91 @@
+# haml-wse-specs/ruby/Rakefile
+# Run RSpec tests for proposed Whitespace Semantics Extensions to Haml (WSE Haml)
+#
+# Authors:
+#  enosis@github.com Nick Ragouzis - Last: Oct2010
+#
+# Correspondence:
+#  Haml_WhitespaceSemanticsExtension_ImplementationNotes v0.5, 20101020
+#
+#
+#after: http://kpumuk.info/ruby-on-rails/my-top-7-rspec-best-practices/
+
+require 'spec/rake/spectask'
+
+SPEC_SUITES = [
+  { :id => :code_3,     :title => 'Shiny Things',      :files => %w(spec/00ImplNotes_Code03-*_spec.rb) },
+  { :id => :code_4,     :title => 'Motivation',        :files => %w(spec/00ImplNotes_Code04-*_spec.rb) },
+  { :id => :code_7,     :title => 'WSE In Brief',      :files => %w(spec/00ImplNotes_Code07-*_spec.rb) },
+  { :id => :code_8,     :title => 'Processing Model',  :files => %w(spec/00ImplNotes_Code08_*_spec.rb) },
+  { :id => :code_8_1,   :title => 'Lexing and Syntax', :files => %w(spec/00ImplNotes_Code08_1-*_spec.rb) },
+  { :id => :code_8_2,   :title => 'Coarse Hierarchy',  :files => %w(spec/00ImplNotes_Code08_2-*_spec.rb) },
+  { :id => :code_8_3,   :title => 'Elements',          :files => %w(spec/00ImplNotes_Code08_3-*_spec.rb) },
+  { :id => :code_8_4,   :title => 'Indentation',       :files => %w(spec/00ImplNotes_Code08_4-*_spec.rb) },
+  { :id => :code_8_8,   :title => 'Normalizing',       :files => %w(spec/00ImplNotes_Code08_8-*_spec.rb) },
+  { :id => :code_8_9,   :title => 'Whiteline',         :files => %w(spec/00ImplNotes_Code08_9-*_spec.rb) },
+  { :id => :code_9,     :title => 'Content Models',    :files => %w(spec/00ImplNotes_Code09_*_spec.rb) },
+  { :id => :code_9_2,   :title => 'Haml Comment',      :files => %w(spec/00ImplNotes_Code09_02-*_spec.rb) },
+  { :id => :code_9_3,   :title => 'Html Comment',      :files => %w(spec/00ImplNotes_Code09_03-*_spec.rb) },
+  { :id => :code_9_5,   :title => 'HereDoc',           :files => %w(spec/00ImplNotes_Code09_05-*_spec.rb) },
+  { :id => :code_9_6,   :title => 'Preserve',          :files => %w(spec/00ImplNotes_Code09_06-*_spec.rb) },
+  { :id => :code_9_7,   :title => 'find_and_preserve', :files => %w(spec/00ImplNotes_Code09_07-*_spec.rb) },
+  { :id => :code_9_8,   :title => 'tilde Preserve',    :files => %w(spec/00ImplNotes_Code09_08-*_spec.rb) },
+  { :id => :code_9_15,  :title => 'Whitespace Removal',:files => %w(spec/00ImplNotes_Code09_15-*_spec.rb) },
+]
+
+#--
+namespace :spec do
+  namespace :suite do
+    SPEC_SUITES.each do |suite|
+      desc "Run Implementation Note suite - #{suite[:title]}"
+      Spec::Rake::SpecTask.new(suite[:id]) do |t|
+
+        t.spec_opts = ["--color -f s"]
+        spec_files = []
+
+        if suite[:files]
+          suite[:files].each { |glob| spec_files += Dir[glob] }
+          t.spec_files = spec_files.sort
+        end
+
+        if suite[:dirs]
+          suite[:dirs].each { |glob| spec_files += Dir["#{glob}/**/*_spec.rb"] }
+          t.spec_files = spec_files.sort
+        end
+
+      end
+    end
+  end
+end
+
+
+#--
+namespace :spec do
+  desc 'Run all specs from Implementation Notes'
+  Spec::Rake::SpecTask.new(:implnotes) do |t|
+    #t.verbose = true
+    t.spec_opts = ["--color -f s"]
+    t.spec_files = Dir["spec/00ImplNotes_Code*_spec.rb"].sort
+  end
+end
+
+
+#--
+# Grab recently touched _spec.rb files
+def recent_specs(touched_since)
+  recent_specs = []
+  recent_specs += Dir['spec/**/*_spec.rb'].select do |path|
+    File.mtime(path) > touched_since
+  end
+end
+
+namespace :spec do
+  Spec::Rake::SpecTask.new(:recent) do |t|
+    desc 'Run all recent specs in spec directory touched in last 10 minutes'
+    t.spec_opts = ["--color -f s"]
+    spec_files = []
+    spec_files = recent_specs(Time.now - (10 * 60))
+    t.spec_files = spec_files.sort
+  end
+end
+

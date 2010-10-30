@@ -1,0 +1,48 @@
+Haml Whitespace Semantics Extension (WSE) Proposals
+
+
+About:
+
+Change history for Haml Whitespace Semantics Extension (WSE) Proposals
+at http://github.com/enosis/haml-wse-specs.
+
+Changes:
+
+  0.5002    20101030
+            - Move to enosis/haml-wse-specs
+
+  0.5       20101023 00:52:50
+            - Add README 
+
+  0.5       20101023 00:15:50
+            - Add Perl Test::More suite, with Makefile for TAP::Harness
+            - Correct rendering variations for HereDoc and :preformatted
+              (05preformatted, Code9_5, others).
+
+  0.5       20101020
+            - Correct and refine proposals, to Draft v0.5
+              Individual RSpec cases, Rakefile.
+              Update the Language Constructs tables
+              Correct variable used in 8.8-08, closing wip-wse v0.2 Issue 9.
+            - In clarifying proposals, adjust 8.8-12 (Issue 11), 9.7-01 and
+              9.7-02 (Issue 13), and add a comparison with FAP in 9.8-01
+              (Issue 14).
+
+  0.3       20101016
+            - Add missing code to doc/tests (4-04, 7-03, 8.1-01/02, 9.3-02)
+
+  0.2       20101005
+            - Initial commit at enosis/text-haml/tree/wse/
+
+              Haml Whitespace Semantics Extension (WSE Haml) Implementation Notes
+
+              Proposes a set of extensions to Haml whitespace semantics, including:
+              mixed content, plaintext nesting, improved semantics for vertical
+              whitespace, an alternative preformatted facility without newline
+              transform, HereDoc content model, and relaxed indentation under
+              an Orderly Indentation Rule.
+
+              In addition to Notes (markdown, pod, html), includes RSpec suite
+              for all examples in Notes, plus a dozen-plus topic-specific test
+              files on WSE Haml extensions, GitHub and OS Issues, and bugs, nits,
+              and inconsistencies in the whitespace handling of legacy Haml.
